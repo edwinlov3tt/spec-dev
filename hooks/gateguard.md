@@ -33,12 +33,25 @@ Before allowing: `rm -rf`, `git reset --hard`, `git push --force`, `DROP TABLE`,
 **2. Rollback plan** — How do you recover if this is wrong?
 **3. Quote authorization** — What specific instruction asked for this?
 
+## React/TypeScript-specific checks
+
+When editing a React component (.tsx/.jsx):
+- **Who imports this component?** Search for `import ... from '<this-file>'`
+- **What props does it expose?** If changing the props interface, list all parent components that pass props to it.
+- **Does this affect shared state?** If editing a context provider, store, or hook — list all consumers.
+- **Does this break routing?** If editing a page component, verify the route still matches.
+
+When editing a shared hook or utility:
+- **Who calls this hook/function?** List all consumers.
+- **Does the return type change?** If yes, every consumer needs updating.
+
 ## When to skip
 
 - Reading files (Read tool) — always allowed
 - Creating NEW files (Write to a path that doesn't exist) — allowed (no existing dependents)
 - Test files — lower scrutiny (tests don't have importers in the same way)
 - Documentation files — lower scrutiny
+- CSS/style-only changes — lower scrutiny (visual, not structural)
 
 ## Why this works
 

@@ -2,7 +2,7 @@
 
 A Claude Code plugin for spec-driven software development. ADR-first architecture, phase sequencing, self-audit, multi-instance orchestration.
 
-> Built from the development methodology used to ship Mosaic — a 10-crate Rust platform with 90+ test suites, 27 ADRs, and 15+ phases shipped using this exact process.
+> Built from the development methodology used to ship Mosaic — a 10-crate Rust platform with 90+ test suites, 27 ADRs, and 15+ phases shipped using this exact process. Works with **Rust**, **React/TypeScript**, and **Python** projects.
 
 ## Philosophy
 

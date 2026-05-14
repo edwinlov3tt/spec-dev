@@ -27,11 +27,27 @@ Commit and push changes with safety checks. Prevents secrets leakage, validates 
 
 If found: **STOP. Do not commit.** Show the user what was found and where. Suggest `.gitignore` or environment variable alternatives.
 
-**Build gate** — run the project's standard gate:
+**Build gate** — detect the project type and run the appropriate gate:
+
+Rust projects (detected by `Cargo.toml`):
 ```bash
 cargo fmt --check --all
 cargo clippy --all-targets --workspace -- -D warnings
 cargo test --workspace
+```
+
+React/TypeScript projects (detected by `package.json` + `tsconfig.json`):
+```bash
+npx tsc --noEmit
+npx eslint . --max-warnings 0
+npm test -- --watchAll=false
+```
+
+Python projects (detected by `pyproject.toml` or `setup.py`):
+```bash
+ruff check .
+mypy .
+pytest
 ```
 
 If any fail: **STOP.** Show the failures. Don't commit broken code.

@@ -103,13 +103,42 @@ Files: [list]
 - [ ] No new dependency introduced without approval
 ```
 
+## Language-specific defaults
+
+When the user specifies their stack, pre-populate with these:
+
+### Rust projects
+```
+Forbidden: .unwrap() in lib code, unsafe without ADR, println! in lib, serde in kernel
+Gate: cargo fmt --check --all && cargo clippy --all-targets -- -D warnings && cargo test --workspace
+Tests: cargo test, criterion for benchmarks
+Naming: snake_case functions, PascalCase types, SCREAMING_SNAKE constants
+```
+
+### React/TypeScript projects
+```
+Forbidden: any type, console.log in components, inline styles (use Tailwind/CSS modules), direct DOM manipulation
+Gate: npx tsc --noEmit && npx eslint . --max-warnings 0 && npm test -- --watchAll=false
+Tests: jest/vitest for unit, playwright/cypress for E2E
+Naming: PascalCase components, camelCase functions/hooks, SCREAMING_SNAKE constants
+Extra: useEffect must declare dependencies, keys in .map() renders, no prop drilling beyond 2 levels
+```
+
+### Python projects
+```
+Forbidden: bare except, print() in library code, global mutable state, star imports
+Gate: ruff check . && mypy . && pytest
+Tests: pytest, hypothesis for property tests
+Naming: snake_case functions, PascalCase classes, SCREAMING_SNAKE constants
+```
+
 ## How to customize
 
 After generating the template, ask the user:
 1. What's the toolchain? (Rust/Python/TypeScript/etc.)
-2. What are the forbidden patterns? (unwrap in Rust, any in TypeScript, etc.)
-3. What's the test framework? (cargo test, pytest, jest, etc.)
-4. What's the gate command? (cargo clippy, eslint, mypy, etc.)
+2. What are the forbidden patterns specific to their project?
+3. What's the test framework?
+4. What's the gate command?
 5. Any project-specific naming conventions?
 
-Tailor the template to their answers.
+Tailor the template to their answers. Use the language defaults above as a starting point.

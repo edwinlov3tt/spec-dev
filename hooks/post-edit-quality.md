@@ -17,15 +17,30 @@ cargo clippy --all-targets -p <affected-crate> -- -D warnings 2>&1 | head -20
 ```
 If clippy warnings appear, show them inline: "Clippy warning in the file you just edited: ..."
 
-**TypeScript/JavaScript (.ts, .tsx, .js, .jsx):**
+**React/TypeScript (.tsx, .ts):**
 ```bash
 npx tsc --noEmit --pretty 2>&1 | head -20
+npx eslint <file> 2>&1 | head -10
+```
+Also check for React-specific issues:
+- Missing `key` prop in `.map()` renders
+- `useEffect` with missing dependencies
+- Direct DOM manipulation instead of state
+- `console.log` left in component code
+- Inline styles that should be in CSS/Tailwind
+
+**JavaScript (.js, .jsx):**
+```bash
+npx eslint <file> 2>&1 | head -10
 ```
 
 **Python (.py):**
 ```bash
 ruff check <file> 2>&1 | head -10
 ```
+
+**CSS/Tailwind (.css, .scss):**
+No automated check — but warn if editing global styles that could affect other components.
 
 ## What NOT to do
 

@@ -66,7 +66,7 @@ Update docs/decisions/README.md when ADRs are created or accepted.
 - Match the project's existing doc style (read 2-3 existing docs of the same type first)
 - Use the exact template structure the project uses (check docs/templates/ if it exists)
 - Cross-link to related docs (ADRs reference other ADRs; handoffs reference their ADR)
-- Concrete > vague. "Add `pub fn foo()` to `bar.rs`" beats "add the function"
+- Concrete > vague. Rust: "Add `pub fn foo()` to `bar.rs`". React: "Add `FooComponent` to `components/Foo.tsx`". Generic "add the function" is never acceptable.
 - Never invent decisions — only document what the PM has decided
 - Never skip the Alternatives Considered section in ADRs
 

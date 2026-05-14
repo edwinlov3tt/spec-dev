@@ -44,7 +44,7 @@ Read the ADR for the specified phase, then produce a handoff at `docs/handoffs/p
 ## Files to modify
 | File | Change |
 |---|---|
-| path/to/file.rs | What changes |
+| path/to/file | What changes |
 
 ## Tests to write
 [List specific test scenarios]
@@ -62,10 +62,13 @@ Read the ADR for the specified phase, then produce a handoff at `docs/handoffs/p
 ## Rules
 
 1. **Read the ADR first.** The handoff inherits acceptance criteria from the ADR — don't invent different ones.
-2. **Be concrete.** "Add the field" is bad. "Add `pub element_type: Option<String>` to `ParsedDimension` in `schema.rs`" is good.
-3. **Include code shapes** when the implementation path isn't obvious. Rust struct signatures, function signatures, pseudocode.
+2. **Be concrete.** "Add the field" is bad. Rust: "Add `pub element_type: Option<String>` to `ParsedDimension` in `schema.rs`." React: "Add `elementType?: string` to the `DimensionProps` interface in `types.ts`."
+3. **Include code shapes** when the implementation path isn't obvious. Type signatures, component structures, pseudocode.
 4. **List every file** that needs modification. The implementer shouldn't discover files mid-implementation.
-5. **Specify the gate** at the bottom: `cargo fmt --check --all && cargo clippy --all-targets --workspace -- -D warnings && cargo test --workspace`
+5. **Specify the gate** at the bottom. Detect project type:
+   - Rust: `cargo fmt --check --all && cargo clippy --all-targets --workspace -- -D warnings && cargo test --workspace`
+   - React/TS: `npx tsc --noEmit && npx eslint . --max-warnings 0 && npm test -- --watchAll=false`
+   - Python: `ruff check . && mypy . && pytest`
 
 ## Also generate: the implementation prompt
 
@@ -87,7 +90,7 @@ Critical constraints:
 
 [Implementation-specific guidance]
 
-Gate: cargo fmt --check --all && cargo clippy --all-targets --workspace -- -D warnings && cargo test --workspace
+Gate: [project-appropriate gate — see /push for detection rules]
 ```
 
 Show this prompt to the user so they can copy-paste it to the implementing instance.
