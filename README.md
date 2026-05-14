@@ -37,10 +37,12 @@ No phase starts without an accepted ADR. No implementation starts without a hand
 
 ## Agents
 
-| Agent | Role |
-|---|---|
-| `architect` | Design phases, write ADRs, plan sequences. Never writes code. |
-| `auditor` | Self-audit completed phases. Always a different instance than the implementer. |
+| Agent | Role | Model |
+|---|---|---|
+| `architect` | Design phases, write ADRs, plan sequences. Never writes code. | Opus |
+| `auditor` | Self-audit completed phases. Always a different instance than the implementer. | Opus |
+| `doc-writer` | Draft all documentation (ADRs, handoffs, reports). PM reviews, never writes. | **Sonnet** (cost-efficient) |
+| `security-reviewer` | OWASP-style security review. Run proactively on auth, input, file I/O, API code. | Sonnet |
 
 ## Skills
 
@@ -48,18 +50,22 @@ No phase starts without an accepted ADR. No implementation starts without a hand
 |---|---|
 | `claude-md-template` | Generate a CLAUDE.md operating manual for a new project |
 | `process-setup` | Scaffold the full spec-driven process (directories, master plan, templates) |
+| `research-first` | Search before coding — check GitHub, crates.io, docs before writing new code |
 
 ## Hooks
 
 | Hook | Trigger | What it does |
 |---|---|---|
 | `pre-commit-secrets` | Before `git commit` | Scans staged diff for API keys, tokens, passwords. Blocks if found. |
+| `gateguard` | Before `Edit` | Forces investigation before edits — list importers, check API surface, verify schemas. Prevents changes without understanding impact. |
+| `config-protection` | Before `Edit` | Blocks modifications to linter/formatter/CI configs. Fix the code, don't weaken the rules. |
+| `post-edit-quality` | After `Edit` | Runs fast quality checks (clippy, tsc, ruff) immediately after edits. Catch issues at edit time, not commit time. |
 
 ## Installation
 
 ```bash
 # Clone into your Claude Code plugins directory
-git clone https://github.com/edwinlov3tt/spec-driven-dev.git ~/.claude/plugins/spec-driven-dev
+git clone https://github.com/edwinlov3tt/spec-dev.git ~/.claude/plugins/spec-driven-dev
 ```
 
 Or add to your project's `.claude/plugins/`:
