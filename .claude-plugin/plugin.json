@@ -1,0 +1,36 @@
+{
+  "name": "spec-driven-dev",
+  "version": "0.1.0",
+  "description": "Spec-driven development process — ADR-first architecture, phase sequencing, self-audit, multi-agent orchestration. Works with Rust, React/TypeScript, and Python projects.",
+  "author": {
+    "name": "Edwin Lovett III",
+    "url": "https://github.com/edwinlov3tt"
+  },
+  "repository": "https://github.com/edwinlov3tt/spec-dev",
+  "license": "MIT",
+  "keywords": [
+    "spec-driven",
+    "adr",
+    "architecture",
+    "development-process",
+    "self-audit",
+    "multi-agent"
+  ],
+  "commands": [
+    "../commands/onboard.md",
+    "../commands/phase.md",
+    "../commands/adr.md",
+    "../commands/handoff.md",
+    "../commands/audit.md",
+    "../commands/sync.md",
+    "../commands/push.md",
+    "../commands/review.md",
+    "../commands/research.md"
+  ],
+  "agents": [
+    "../agents/architect.md",
+    "../agents/auditor.md",
+    "../agents/doc-writer.md",
+    "../agents/security-reviewer.md"
+  ]
+}
