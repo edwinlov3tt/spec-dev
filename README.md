@@ -1,4 +1,4 @@
-# spec-driven-dev
+# spec-dev
 
 A Claude Code plugin for spec-driven software development. ADR-first architecture, phase sequencing, self-audit, multi-instance orchestration.
 
@@ -63,16 +63,16 @@ No phase starts without an accepted ADR. No implementation starts without a hand
 
 ## Installation
 
-```bash
-# Clone into your Claude Code plugins directory
-git clone https://github.com/edwinlov3tt/spec-dev.git ~/.claude/plugins/spec-driven-dev
+Install via the Claude Code plugin marketplace:
+
+```
+/plugin marketplace add edwinlov3tt/spec-dev
+/plugin install spec-dev@spec-dev
 ```
 
-Or add to your project's `.claude/plugins/`:
+Or clone directly:
 ```bash
-cd your-project
-mkdir -p .claude/plugins
-git clone https://github.com/edwinlov3tt/spec-driven-dev.git .claude/plugins/spec-driven-dev
+git clone https://github.com/edwinlov3tt/spec-dev.git ~/.claude/plugins/spec-dev
 ```
 
 ## Quick start

@@ -5,13 +5,13 @@
     "url": "https://github.com/edwinlov3tt"
   },
   "metadata": {
-    "description": "Single-plugin marketplace wrapper for spec-driven-dev.",
+    "description": "Single-plugin marketplace wrapper for spec-dev.",
     "version": "0.1.0"
   },
   "plugins": [
     {
-      "name": "spec-driven-dev",
-      "source": "../",
+      "name": "spec-dev",
+      "source": ".",
       "description": "Spec-driven development process plugin — ADR-first architecture, phase sequencing, self-audit, multi-agent orchestration. Built from the Mosaic development methodology.",
       "version": "0.1.0"
     }
